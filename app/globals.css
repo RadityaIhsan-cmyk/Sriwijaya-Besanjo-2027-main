@@ -1,0 +1,269 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Avoid stacking CSS smooth scrolling on top of wheel interpolation. */
+html.is-wheel-scrolling {
+  scroll-behavior: auto !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.scroll-smooth {
+    scroll-behavior: auto;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 38 73% 48%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 45 100% 96%;
+    --secondary-foreground: 38 87% 29%;
+    --muted: 45 60% 95%;
+    --muted-foreground: 35 30% 40%;
+    --accent: 43 90% 88%;
+    --accent-foreground: 38 87% 29%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 42 65% 80%;
+    --input: 42 65% 80%;
+    --ring: 38 73% 48%;
+    --radius: 0.75rem;
+
+    --gold-bright: #fff3a3;
+    --gold-main: #f1c40f;
+    --gold-deep: #d49b21;
+    --gold-dark: #8c5e0a;
+    --gold-shadow: rgba(212, 155, 33, 0.4);
+  }
+}
+
+@layer utilities {
+  .scalable-title {
+    font-size: clamp(2rem, 5vw, 4.5rem);
+    line-height: 1.1;
+  }
+
+  .gold-text-gradient {
+    background: linear-gradient(
+      120deg,
+      #bf953f 0%,
+      #fcf6ba 25%,
+      #b38728 50%,
+      #fbf5b7 75%,
+      #aa771c 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 25px rgba(255, 215, 0, 0.35);
+    animation: goldShimmer 4s linear infinite;
+  }
+
+  @keyframes goldShimmer {
+    to {
+      background-position: 200% center;
+    }
+  }
+
+  .pillar-card-ultra {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.96) 0%,
+      rgba(255, 248, 225, 0.92) 100%
+    );
+    border-radius: clamp(1rem, 2vw, 1.5rem);
+    border: 1.5px solid rgba(212, 155, 33, 0.35);
+    box-shadow: 0 20px 40px rgba(140, 94, 10, 0.12),
+      inset 0 2px 6px rgba(255, 255, 255, 0.8);
+    position: relative;
+    backdrop-filter: blur(12px);
+    transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .pillar-card-ultra:hover {
+    box-shadow: 0 28px 55px rgba(183, 134, 40, 0.28),
+      0 0 20px rgba(255, 215, 0, 0.35);
+    transform: translateY(-6px);
+  }
+
+  .featured-card-tri {
+    background: linear-gradient(160deg, #fffdf5 0%, #ffefba 55%, #fde396 100%);
+    border: 2px solid rgba(212, 155, 33, 0.65);
+    box-shadow: 0 24px 48px rgba(140, 94, 10, 0.2),
+      inset 0 2px 6px rgba(255, 255, 255, 0.85);
+    z-index: 10;
+  }
+
+  @media (min-width: 768px) {
+    .featured-card-tri {
+      transform: scale(1.05);
+    }
+    .featured-card-tri:hover {
+      transform: scale(1.08) translateY(-6px);
+    }
+  }
+
+  .royal-sky-bg {
+    background: linear-gradient(
+      180deg,
+      #b8dff8 0%,
+      #e5f2fc 12%,
+      #fffdf7 45%,
+      #ffffff 100%
+    );
+  }
+
+  .btn-gold-royal {
+    background: linear-gradient(135deg, #f5b638 0%, #d49b21 50%, #8c5e0a 100%);
+    color: #ffffff !important;
+    font-family: var(--font-cinzel), serif;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    box-shadow: 0 10px 25px rgba(212, 155, 33, 0.4),
+      inset 0 1px 2px rgba(255, 255, 255, 0.6);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .btn-gold-royal:hover {
+    transform: scale(1.03);
+    box-shadow: 0 15px 35px rgba(212, 155, 33, 0.55),
+      0 0 20px rgba(255, 235, 150, 0.75);
+  }
+
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .animate-spin-slow {
+    animation: spin-slow 20s linear infinite;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  .animate-float {
+    animation: float 4.5s ease-in-out infinite;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  .animate-marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee 28s linear infinite;
+  }
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+
+  .marquee-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 8%,
+      black 92%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 8%,
+      black 92%,
+      transparent
+    );
+  }
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+/* Custom Royal Gold Scrollbar */
+::-webkit-scrollbar {
+  width: 11px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fff9e6;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #f5b638, #b27c12);
+  border-radius: 10px;
+  border: 2px solid #fff9e6;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #d49b21, #8c5e0a);
+}
+
+/* Timer stays native; hero motion follows its overlap in both directions. */
+.hero-countdown-stack {
+  position: relative;
+  isolation: isolate;
+  --stack-nav-height: 72px;
+}
+
+.stack-hero {
+  position: sticky;
+  top: var(--stack-nav-height);
+  z-index: 0;
+}
+
+.stack-hero > #beranda {
+  box-sizing: border-box;
+  min-height: calc(100svh - var(--stack-nav-height));
+  padding-block: clamp(1.25rem, 4svh, 3rem);
+  transform: translate3d(0, var(--hero-scroll-shift, 0px), 0);
+  filter: blur(var(--hero-scroll-blur, 0px));
+}
+
+.stack-countdown {
+  position: relative;
+  z-index: 1;
+  background: #7a5207;
+  border-radius: 2rem 2rem 0 0;
+  box-shadow: 0 -20px 60px rgb(55 35 0 / 22%);
+}
+
+.stack-countdown > section {
+  min-height: calc(100svh - var(--stack-nav-height));
+  display: flex;
+  align-items: center;
+  border-radius: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stack-hero { position: relative; top: auto; }
+  .stack-hero > #beranda { transform: none; filter: none; }
+}

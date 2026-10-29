@@ -1,0 +1,58 @@
+.card {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  padding: 0;
+  border: 0;
+  border-radius: 1rem;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: center;
+  perspective: 1000px;
+  cursor: default;
+  -webkit-tap-highlight-color: transparent;
+}
+.card:focus-visible { outline: 3px solid #f5edce; outline-offset: 6px; }
+.inner {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(.22,.68,.2,1);
+}
+.card:hover .inner,
+.card:focus-visible .inner { transform: rotateY(180deg); }
+.face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #d4af37;
+  border-radius: 1rem;
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  box-shadow: 0 8px 24px rgb(45 29 4 / 22%);
+}
+.front { transform: rotateY(0deg); background: linear-gradient(120deg, #f8f5f0 35%, #f5edce 75%, #ebdc9d); color: #604d17; }
+.placeholder { display: flex; flex: 1; flex-direction: column; align-items: center; justify-content: center; gap: .5rem; padding: 1rem; }
+.placeholderTitle { font-weight: 700; font-size: .875rem; }
+.placeholderNote { font-size: .75rem; }
+.photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.caption { position: relative; margin-top: auto; width: 100%; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem; padding: .875rem 1rem; background: #604d17; color: #f8f5f0; }
+.title { font-family: var(--font-cinzel), serif; font-size: .75rem; font-weight: 700; }
+.hint { display: inline-flex; align-items: center; gap: .3rem; font-size: .6875rem; color: #ebdc9d; }
+.back { transform: rotateY(180deg); background: linear-gradient(120deg, #f5edce, #d4af37); color: #483a12; padding: clamp(1rem, 2vw, 1.75rem); }
+.eyebrow { font-size: .625rem; text-transform: uppercase; letter-spacing: .13em; margin-bottom: .6rem; }
+.backTitle { font-family: var(--font-cinzel), serif; font-size: clamp(1rem, 1.8vw, 1.35rem); font-weight: 800; }
+.divider { width: 2.5rem; height: 1px; flex-shrink: 0; background: #80661b; margin: .75rem 0; }
+.description { display: block; font-size: .875rem; line-height: 1.6; overflow-y: auto; max-height: 55%; }
+.backHint { font-size: .625rem; margin-top: .75rem; }
+@media (min-width: 768px) and (max-width: 1023px) { .card { aspect-ratio: 1; } }
+@media (prefers-reduced-motion: reduce) { .inner { transition: none; } }
